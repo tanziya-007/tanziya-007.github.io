@@ -1,56 +1,325 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tanziya Banu | Resume</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tanziya Banu — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#050810;--surface:#0c1120;--card:#101827;--accent:#7ef0c0;--accent2:#5b9cf6;--accent3:#f06292;--text:#e8eaf6;--muted:#8892b0;--border:rgba(126,240,192,0.15);--glow:rgba(126,240,192,0.18)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;overflow-x:hidden}
+#cursor{position:fixed;width:12px;height:12px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:width .2s,height .2s}
+#cursor-ring{position:fixed;width:38px;height:38px;border:1.5px solid var(--accent);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.45;transition:width .3s,height .3s,opacity .3s}
+#starfield{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.7}
+.wrapper{position:relative;z-index:2}
+nav{position:fixed;top:0;width:100%;z-index:100;padding:1.2rem 2.5rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);backdrop-filter:blur(20px);background:rgba(5,8,16,.75)}
+.nav-logo{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:var(--accent);letter-spacing:.05em}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;transition:color .3s}
+.nav-links a:hover{color:var(--accent)}
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:8rem 8vw 4rem;position:relative;overflow:hidden}
+.hero-eyebrow{font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem;animation:fadeUp .8s .3s ease both}
+.hero-eyebrow::before{content:'';width:2.5rem;height:1px;background:var(--accent)}
+h1{font-family:'Syne',sans-serif;font-size:clamp(3rem,9vw,7.5rem);font-weight:800;line-height:.95;letter-spacing:-.03em;animation:fadeUp .9s .5s ease both}
+h1 .outline{-webkit-text-stroke:1.5px var(--accent);color:transparent}
+h1 .glow{color:var(--accent);text-shadow:0 0 40px rgba(126,240,192,.5)}
+.hero-tagline{margin-top:1.8rem;max-width:540px;font-size:.88rem;line-height:1.9;color:var(--muted);animation:fadeUp .9s .65s ease both}
+.hero-cta{margin-top:2.8rem;display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp .9s .8s ease both}
+.btn{padding:.75rem 2rem;border-radius:2px;font-family:'DM Mono',monospace;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .3s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-primary{background:var(--accent);color:var(--bg);box-shadow:0 0 24px rgba(126,240,192,.3)}
+.btn-primary:hover{box-shadow:0 0 40px rgba(126,240,192,.5);transform:translateY(-2px)}
+.btn-outline{border:1px solid var(--border);color:var(--text)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.hero-badge{position:absolute;right:8vw;top:50%;transform:translateY(-50%);width:160px;height:160px;animation:fadeIn 1s 1.2s ease both,rotateBadge 18s linear infinite}
+@keyframes rotateBadge{to{transform:translateY(-50%) rotate(360deg)}}
+section{padding:5rem 8vw}
+.section-label{font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;display:flex;align-items:center;gap:.6rem}
+.section-label::before{content:'';width:1.5rem;height:1px;background:var(--accent)}
+h2{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-bottom:3rem;line-height:1.1}
+#about{background:var(--surface)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.about-text p{line-height:2;color:var(--muted);font-size:.85rem;margin-bottom:1.2rem}
+.about-text span{color:var(--accent)}
+.about-stats{display:flex;flex-direction:column;gap:1.2rem}
+.stat-item{border:1px solid var(--border);padding:1.5rem;border-radius:4px;background:var(--card);position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
+.stat-item:hover{border-color:var(--accent);transform:translateX(6px)}
+.stat-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--accent),var(--accent2))}
+.stat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--accent)}
+.stat-desc{font-size:.72rem;color:var(--muted);margin-top:.2rem}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1rem}
+.skill-chip{padding:.9rem 1.2rem;border:1px solid var(--border);border-radius:4px;background:var(--card);font-size:.75rem;color:var(--text);display:flex;align-items:center;gap:.6rem;transition:all .3s}
+.skill-chip:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-4px);box-shadow:0 8px 24px rgba(126,240,192,.1)}
+.skill-chip .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;box-shadow:0 0 6px var(--accent)}
+.skill-chip.blue .dot{background:var(--accent2);box-shadow:0 0 6px var(--accent2)}
+.skill-chip.blue:hover{border-color:var(--accent2);color:var(--accent2)}
+.skill-chip.pink .dot{background:var(--accent3);box-shadow:0 0 6px var(--accent3)}
+.skill-chip.pink:hover{border-color:var(--accent3);color:var(--accent3)}
+#experience{background:var(--surface)}
+.timeline{display:flex;flex-direction:column}
+.timeline-item{display:grid;grid-template-columns:180px 24px 1fr;gap:0 1.5rem;padding-bottom:3rem}
+.tl-date{text-align:right;font-size:.7rem;color:var(--muted);padding-top:.35rem;letter-spacing:.06em;line-height:1.5}
+.tl-line{display:flex;flex-direction:column;align-items:center}
+.tl-dot{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent);flex-shrink:0;margin-top:.45rem}
+.tl-connector{width:1px;flex:1;background:linear-gradient(to bottom,var(--accent),transparent);margin-top:6px}
+.tl-role{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:.3rem}
+.tl-company{font-size:.75rem;color:var(--accent);margin-bottom:.8rem;letter-spacing:.08em}
+.tl-desc{font-size:.78rem;color:var(--muted);line-height:1.9}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.5rem}
+.project-card{border:1px solid var(--border);border-radius:6px;background:var(--card);padding:2rem;position:relative;overflow:hidden;transition:all .4s}
+.project-card::before{content:'';position:absolute;inset:0;opacity:0;background:radial-gradient(circle at top left,var(--glow),transparent 70%);transition:opacity .4s}
+.project-card:hover::before{opacity:1}
+.project-card:hover{border-color:var(--accent);transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.4)}
+.project-num{font-family:'Syne',sans-serif;font-size:3.5rem;font-weight:800;color:rgba(126,240,192,.07);position:absolute;top:1rem;right:1.5rem;line-height:1}
+.project-tag{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem;display:inline-block;border:1px solid rgba(126,240,192,.25);padding:.2rem .6rem;border-radius:2px}
+.project-title{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:700;margin-bottom:.8rem}
+.project-desc{font-size:.77rem;color:var(--muted);line-height:1.9}
+.project-stack{margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:.5rem}
+.stack-tag{font-size:.65rem;padding:.25rem .6rem;background:rgba(126,240,192,.07);border:1px solid rgba(126,240,192,.15);border-radius:2px;color:var(--muted)}
+#certifications{background:var(--surface)}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
+.cert-card{border:1px solid var(--border);border-radius:4px;background:var(--card);padding:1.5rem;transition:all .3s}
+.cert-card:hover{border-color:var(--accent2);transform:translateY(-4px);box-shadow:0 12px 28px rgba(91,156,246,.1)}
+.cert-icon{font-size:1.8rem;margin-bottom:.8rem}
+.cert-name{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;margin-bottom:.4rem}
+.cert-issuer{font-size:.72rem;color:var(--muted)}
+.edu-grid{display:flex;flex-direction:column;gap:1.2rem}
+.edu-card{border:1px solid var(--border);border-radius:4px;background:var(--card);padding:2rem;display:grid;grid-template-columns:1fr auto;align-items:start;gap:1rem;transition:all .3s}
+.edu-card:hover{border-color:var(--accent);transform:translateX(6px)}
+.edu-degree{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:.4rem}
+.edu-school{font-size:.78rem;color:var(--accent);margin-bottom:.3rem}
+.edu-year{font-size:.7rem;color:var(--muted)}
+.edu-badge{font-size:.65rem;padding:.3rem .8rem;border:1px solid var(--border);border-radius:2px;color:var(--muted);white-space:nowrap}
+#contact{background:var(--surface);text-align:center}
+.contact-inner{max-width:540px;margin:0 auto}
+.contact-sub{color:var(--muted);font-size:.85rem;line-height:1.8;margin-bottom:2.5rem}
+.contact-links{display:flex;justify-content:center;gap:1.2rem;flex-wrap:wrap}
+.contact-link{display:flex;align-items:center;gap:.6rem;color:var(--muted);text-decoration:none;font-size:.78rem;padding:.75rem 1.5rem;border:1px solid var(--border);border-radius:4px;transition:all .3s}
+.contact-link:hover{color:var(--accent);border-color:var(--accent);transform:translateY(-3px)}
+footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-size:.7rem;color:var(--muted);letter-spacing:.08em}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1 !important;transform:none !important}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr}.timeline-item{grid-template-columns:1fr}.tl-date{text-align:left}.tl-line{display:none}.hero-badge{display:none}nav{padding:1rem 1.5rem}.nav-links{gap:1rem}section{padding:4rem 6vw}}
+</style>
 </head>
 <body>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<canvas id="starfield"></canvas>
+<div class="wrapper">
 
-<header>
-  <h1>Tanziya Banu</h1>
-  <p>MCA Student | Web Developer</p>
-  <button onclick="downloadResume()">Download Resume</button>
-</header>
+<nav>
+  <div class="nav-logo">TB</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-<section>
+<section id="hero">
+  <div class="hero-eyebrow">Open to opportunities</div>
+  <h1><span class="outline">Tanziya</span><br><span class="glow">Banu</span></h1>
+  <p class="hero-tagline">Full-Stack Python Developer &amp; AI/ML Enthusiast.<br>Building intelligent applications with TensorFlow, Kotlin &amp; Java.<br>Final-year MCA student at NIE Mysuru.</p>
+  <div class="hero-cta">
+    <a class="btn btn-primary" href="#projects">View Projects</a>
+    <a class="btn btn-outline" href="mailto:tanziyamuknay@outlook.com">Get In Touch</a>
+  </div>
+  <svg class="hero-badge" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="80" cy="80" r="70" stroke="rgba(126,240,192,0.15)" stroke-width="1"/>
+    <path id="circlePath" d="M80,80 m-55,0 a55,55 0 1,1 110,0 a55,55 0 1,1 -110,0" fill="none"/>
+    <text fill="rgba(126,240,192,0.6)" font-family="DM Mono" font-size="10" letter-spacing="3"><textPath href="#circlePath">AI/ML · PYTHON · FULL-STACK · DEVELOPER ·&nbsp;</textPath></text>
+    <circle cx="80" cy="80" r="8" fill="rgba(126,240,192,0.12)" stroke="rgba(126,240,192,0.4)" stroke-width="1"/>
+    <text x="80" y="84" text-anchor="middle" fill="rgba(126,240,192,0.8)" font-size="8" font-family="DM Mono">TB</text>
+  </svg>
+</section>
+
+<section id="about">
+  <div class="section-label">Who I am</div>
   <h2>About Me</h2>
-  <p>
-    MCA student passionate about web development, AI-based applications,
-    and building responsive resume and portfolio websites.
-  </p>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>I'm a <span>final-year MCA student at NIE Mysuru</span> with a passion for AI/ML and full-stack development. I love building things that solve real-world problems with clean, efficient code.</p>
+      <p>Currently working as a <span>Full-Stack Python Developer Intern at Mindsetcraft Labs</span>, building scalable Python backends and REST APIs. Experienced with <span>TensorFlow, Kotlin, and Java</span> through internships and personal projects.</p>
+      <p>Actively seeking opportunities in <span>software development or AI/ML engineering</span> where I can grow, contribute, and make an impact.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-item"><div class="stat-num">3+</div><div class="stat-desc">Months at Mindsetcraft Labs building Python backends</div></div>
+      <div class="stat-item"><div class="stat-num">3</div><div class="stat-desc">Industry certifications earned</div></div>
+      <div class="stat-item"><div class="stat-num">AI/ML</div><div class="stat-desc">Primary focus — TensorFlow &amp; intelligent app development</div></div>
+    </div>
+  </div>
 </section>
 
-<section>
+<section id="skills">
+  <div class="section-label">What I work with</div>
   <h2>Skills</h2>
-  <ul>
-    <li>HTML, CSS, JavaScript</li>
-    <li>Python</li>
-    <li>Java</li>
-    <li>MySQL</li>
-    <li>Git & GitHub</li>
-  </ul>
+  <div class="skills-grid reveal">
+    <div class="skill-chip"><span class="dot"></span>Python</div>
+    <div class="skill-chip"><span class="dot"></span>TensorFlow</div>
+    <div class="skill-chip"><span class="dot"></span>Flask</div>
+    <div class="skill-chip blue"><span class="dot"></span>Kotlin</div>
+    <div class="skill-chip blue"><span class="dot"></span>Java</div>
+    <div class="skill-chip blue"><span class="dot"></span>REST APIs</div>
+    <div class="skill-chip"><span class="dot"></span>MySQL</div>
+    <div class="skill-chip blue"><span class="dot"></span>Full-Stack Dev</div>
+    <div class="skill-chip pink"><span class="dot"></span>Power BI</div>
+    <div class="skill-chip pink"><span class="dot"></span>Data Analysis</div>
+    <div class="skill-chip"><span class="dot"></span>AI / ML</div>
+    <div class="skill-chip blue"><span class="dot"></span>Bootstrap</div>
+  </div>
 </section>
 
-<section>
+<section id="experience">
+  <div class="section-label">Where I've worked</div>
+  <h2>Experience</h2>
+  <div class="timeline reveal">
+    <div class="timeline-item">
+      <div class="tl-date">Feb 2026 — Present</div>
+      <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+      <div class="tl-content">
+        <div class="tl-role">Full-Stack Python Developer Intern</div>
+        <div class="tl-company">Mindsetcraft Labs Pvt. Ltd.</div>
+        <div class="tl-desc">Building scalable Python backends and REST APIs. Designing and shipping full-stack features that power real users, while deepening expertise in AI-driven product development.</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">Feb 2024 — Apr 2024</div>
+      <div class="tl-line"><div class="tl-dot" style="background:var(--accent2);box-shadow:0 0 12px var(--accent2)"></div><div class="tl-connector" style="background:linear-gradient(to bottom,var(--accent2),transparent)"></div></div>
+      <div class="tl-content">
+        <div class="tl-role">Intern</div>
+        <div class="tl-company">A Cube Solutions · Mysore</div>
+        <div class="tl-desc">Gained hands-on industry experience, collaborating on projects that strengthened core development fundamentals and professional working practices.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-label">What I've built</div>
   <h2>Projects</h2>
-  <ul>
-    <li>AI Resume Builder</li>
-    <li>Portfolio Website</li>
-    <li>Banking System (Python)</li>
-  </ul>
+  <div class="projects-grid reveal">
+    <div class="project-card">
+      <div class="project-num">01</div>
+      <div class="project-tag">Internship · Mar 2026 – Present</div>
+      <div class="project-title">Pharma Choice — Pharmacy E-Commerce Web App</div>
+      <div class="project-desc">Full-stack pharmacy management system with role-based access (Admin/User). Features user registration/login, drug browsing, cart management, and order placement. Admin dashboard for categories, medicines, stock levels, and low-stock alerts. Real-time stock updates with order status tracking (Placed → Shipped → Delivered).</div>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span><span class="stack-tag">Flask</span><span class="stack-tag">MySQL</span><span class="stack-tag">Bootstrap</span><span class="stack-tag">Jinja2</span><span class="stack-tag">HTML/CSS</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">02</div>
+      <div class="project-tag">AI / ML</div>
+      <div class="project-title">Intelligent App with TensorFlow</div>
+      <div class="project-desc">Developed an intelligent application leveraging TensorFlow for model training and inference, solving a real-world problem with a clean Python backend and REST API interface.</div>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span><span class="stack-tag">TensorFlow</span><span class="stack-tag">REST API</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">03</div>
+      <div class="project-tag">Mobile</div>
+      <div class="project-title">Android App with Kotlin</div>
+      <div class="project-desc">Built a native Android application using Kotlin and Java, focusing on smooth UX, efficient data handling, and modern Android architecture patterns.</div>
+      <div class="project-stack">
+        <span class="stack-tag">Kotlin</span><span class="stack-tag">Java</span><span class="stack-tag">Android SDK</span>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section>
+<section id="certifications">
+  <div class="section-label">Credentials</div>
+  <h2>Certifications</h2>
+  <div class="cert-grid reveal">
+    <div class="cert-card"><div class="cert-icon">🤖</div><div class="cert-name">Google AI Essentials</div><div class="cert-issuer">Google</div></div>
+    <div class="cert-card"><div class="cert-icon">🏅</div><div class="cert-name">Research Methodologies &amp; IPR — Elite Gold</div><div class="cert-issuer">NPTEL</div></div>
+    <div class="cert-card"><div class="cert-icon">📊</div><div class="cert-name">Microsoft Power BI Data Analyst Associate</div><div class="cert-issuer">Microsoft</div></div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="section-label">Academic journey</div>
   <h2>Education</h2>
-  <p>MCA — [Your College Name]</p>
+  <div class="edu-grid reveal">
+    <div class="edu-card">
+      <div><div class="edu-degree">Master of Computer Applications (MCA)</div><div class="edu-school">The National Institute of Engineering, Mysuru</div><div class="edu-year">Dec 2024 — Jun 2026</div></div>
+      <div class="edu-badge">Postgraduate</div>
+    </div>
+    <div class="edu-card">
+      <div><div class="edu-degree">Bachelor of Computer Applications (BCA)</div><div class="edu-school">DM Trinity First Grade College, Mysuru</div><div class="edu-year">Oct 2021 — Jul 2024</div></div>
+      <div class="edu-badge">Undergraduate</div>
+    </div>
+  </div>
 </section>
 
-<footer>
-  <p>© 2026 Tanziya Banu</p>
-</footer>
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-label" style="justify-content:center">Let's connect</div>
+    <h2>Get In Touch</h2>
+    <p class="contact-sub">Whether you have an opportunity, a project idea, or just want to say hello — my inbox is always open.</p>
+    <div class="contact-links reveal">
+      <a class="contact-link" href="mailto:tanziyamuknay@outlook.com">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>Email Me
+      </a>
+      <a class="contact-link" href="https://www.linkedin.com/in/tanziyabanu-3666042b4" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
 
-<script src="script.js"></script>
+<footer>&copy; 2026 Tanziya Banu &mdash; Built with passion &amp; code</footer>
+</div>
+
+<script>
+// Cursor
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+let mx=window.innerWidth/2,my=window.innerHeight/2,rx=mx,ry=my;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function loop(){cursor.style.left=mx+'px';cursor.style.top=my+'px';rx+=(mx-rx)*.13;ry+=(my-ry)*.13;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop)})();
+document.querySelectorAll('a,button,.skill-chip,.project-card,.cert-card,.edu-card,.stat-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.width='20px';cursor.style.height='20px';ring.style.width='60px';ring.style.height='60px';ring.style.opacity='.8'});
+  el.addEventListener('mouseleave',()=>{cursor.style.width='12px';cursor.style.height='12px';ring.style.width='38px';ring.style.height='38px';ring.style.opacity='.45'});
+});
+
+// Starfield
+const canvas=document.getElementById('starfield'),ctx=canvas.getContext('2d');
+let W,H;
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+resize();window.addEventListener('resize',resize);
+const stars=Array.from({length:150},()=>({x:Math.random()*2000,y:Math.random()*1200,r:Math.random()*1.3+.2,speed:Math.random()*.25+.04,alpha:Math.random()}));
+function drawStars(){
+  ctx.clearRect(0,0,W,H);
+  stars.forEach(s=>{
+    ctx.beginPath();ctx.arc(s.x%W,s.y%H,s.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(126,240,192,${s.alpha*.65})`;ctx.fill();
+    s.y-=s.speed;if(s.y<0)s.y=H;
+    s.alpha=.35+Math.sin(Date.now()*.001+s.x)*.3;
+  });
+  requestAnimationFrame(drawStars);
+}
+drawStars();
+
+// Reveal — robust version
+function revealVisible(){
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight+80) el.classList.add('visible');
+  });
+}
+// Run immediately, on scroll, and as a hard fallback
+revealVisible();
+window.addEventListener('scroll',revealVisible,{passive:true});
+setTimeout(()=>document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible')),500);
+</script>
 </body>
 </html>
